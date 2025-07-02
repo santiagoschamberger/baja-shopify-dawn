@@ -22,7 +22,19 @@
 
   .best-selling-products__header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
+  }
+  
+  .best-selling-products__subtitle {
+    font-family: 'Gilroy-Regular', var(--font-body-family);
+    font-size: 16px;
+    line-height: 1.85;
+    color: #1e1e1e;
+    opacity: 0.8;
+    margin: 2rem 0 0 0;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
   }
 
   .best-selling-products__title {
@@ -113,6 +125,11 @@
         <h2 class="best-selling-products__title{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {{ section.settings.title | default: "Best Selling Product" }}
         </h2>
+        {%- if section.settings.subtitle != blank -%}
+          <p class="best-selling-products__subtitle{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {{ section.settings.subtitle }}
+          </p>
+        {%- endif -%}
       </div>
 
       <!-- Products Grid -->
@@ -214,6 +231,12 @@
       "id": "title",
       "default": "Best Selling Product",
       "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "info": "Optional subtitle text below the heading"
     },
     {
       "type": "collection",
