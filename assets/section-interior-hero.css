@@ -37,7 +37,7 @@
 }
 
 .interior-hero__title {
-  font-family: var(--font-gilroy-bold, var(--font-heading-family));
+  font-family: 'Gilroy-Bold', var(--font-heading-family);
   font-size: 80px;
   line-height: 1.3;
   letter-spacing: -0.8px;
@@ -49,7 +49,7 @@
 }
 
 .interior-hero__subtitle {
-  font-family: var(--font-gilroy-regular, var(--font-body-family));
+  font-family: 'Gilroy-Regular', var(--font-body-family);
   font-size: 24px;
   line-height: 1.6;
   color: #ffffff;
@@ -88,7 +88,7 @@
   border: none;
   outline: none;
   color: #ffffff;
-  font-family: var(--font-gilroy-regular, var(--font-body-family));
+  font-family: 'Gilroy-Regular', var(--font-body-family);
   font-size: 18px;
   line-height: 1.5;
   opacity: 0.8;
@@ -228,7 +228,7 @@
 }
 
 .interior-features__title {
-  font-family: var(--font-gilroy-bold, var(--font-heading-family));
+  font-family: 'Gilroy-Bold', var(--font-heading-family);
   font-size: 42px;
   line-height: normal;
   color: #1e1e1e;
@@ -255,7 +255,7 @@
 }
 
 .feature-card__title {
-  font-family: var(--font-gilroy-bold, var(--font-heading-family));
+  font-family: 'Gilroy-Bold', var(--font-heading-family);
   font-size: 24px;
   line-height: normal;
   color: #1e1e1e;
@@ -266,7 +266,7 @@
 }
 
 .feature-card__description {
-  font-family: var(--font-gilroy-regular, var(--font-body-family));
+  font-family: 'Gilroy-Regular', var(--font-body-family);
   font-size: 16px;
   line-height: 1.85;
   color: #1e1e1e;
@@ -281,7 +281,7 @@
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  font-family: var(--font-gilroy-medium, var(--font-body-family));
+  font-family: 'Gilroy-Medium', var(--font-body-family);
   font-size: 14px;
   line-height: 1.85;
   color: #e58411;

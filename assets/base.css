@@ -1,3 +1,49 @@
+/* Custom Gilroy Fonts */
+@font-face {
+  font-family: 'Gilroy-Regular';
+  src: url('{{ "Gilroy-Regular.woff2" | asset_url }}') format('woff2'),
+       url('{{ "Gilroy-Regular.woff" | asset_url }}') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy-Medium';
+  src: url('{{ "Gilroy-Medium.woff2" | asset_url }}') format('woff2'),
+       url('{{ "Gilroy-Medium.woff" | asset_url }}') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy-Bold';
+  src: url('{{ "Gilroy-Bold.woff2" | asset_url }}') format('woff2'),
+       url('{{ "Gilroy-Bold.woff" | asset_url }}') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy-Light';
+  src: url('{{ "Gilroy-Light.woff2" | asset_url }}') format('woff2'),
+       url('{{ "Gilroy-Light.woff" | asset_url }}') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy-Heavy';
+  src: url('{{ "Gilroy-Heavy.woff2" | asset_url }}') format('woff2'),
+       url('{{ "Gilroy-Heavy.woff" | asset_url }}') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --alpha-button-background: 1;
   --alpha-button-border: 1;
