@@ -1,0 +1,315 @@
+{{ 'component-card-figma.css' | asset_url | stylesheet_tag }}
+{{ 'figma-product-card.js' | asset_url | script_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .best-selling-products {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .best-selling-products__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .best-selling-products__title {
+    font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0d1b39;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .best-selling-products__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .best-selling-products__footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .best-selling-products__view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #ff8c42;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .best-selling-products__view-all:hover {
+    color: #e67a36;
+  }
+
+  .best-selling-products__view-all svg {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .best-selling-products__view-all:hover svg {
+    transform: translateX(2px);
+  }
+
+  @media screen and (max-width: 990px) {
+    .best-selling-products__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .best-selling-products__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .best-selling-products__title {
+      font-size: 2rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .best-selling-products__grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .best-selling-products__title {
+      font-size: 1.75rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="section-{{ section.id }}-padding">
+    <div class="best-selling-products">
+      
+      <!-- Header -->
+      <div class="best-selling-products__header">
+        <h2 class="best-selling-products__title{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.title | default: "Best Selling Product" }}
+        </h2>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="best-selling-products__grid">
+        {%- liquid
+          assign products_to_display = section.settings.products_to_show | default: 4
+          if section.settings.collection != blank
+            assign collection_products = collections[section.settings.collection].products
+          else
+            assign collection_products = collections.all.products
+          endif
+        -%}
+        
+        {%- for product in collection_products limit: products_to_display -%}
+          <div class="best-selling-products__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+               {% if settings.animations_reveal_on_scroll %}
+                 data-cascade
+                 style="--animation-order: {{ forloop.index }};"
+               {% endif %}>
+            {% render 'card-product-figma', 
+               card_product: product, 
+               show_rating: section.settings.show_rating,
+               lazy_load: forloop.index > 2,
+               section_id: section.id
+            %}
+          </div>
+        {%- else -%}
+          {%- comment -%} Show placeholder cards if no products {%- endcomment -%}
+          {%- for i in (1..4) -%}
+            <div class="best-selling-products__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                 {% if settings.animations_reveal_on_scroll %}
+                   data-cascade
+                   style="--animation-order: {{ forloop.index }};"
+                 {% endif %}>
+              <div class="figma-product-card">
+                <div class="figma-card-container">
+                  <div class="figma-card-image-container">
+                    <div class="figma-card-image-placeholder">
+                      {{ 'product-1' | placeholder_svg_tag: 'figma-card-image' }}
+                    </div>
+                  </div>
+                  <div class="figma-card-content">
+                    <div class="figma-card-info">
+                      <div class="figma-card-category">Chair</div>
+                      <h3 class="figma-card-title">
+                        <span class="figma-card-link">Sample Product {{ i }}</span>
+                      </h3>
+                      <div class="figma-card-rating">
+                        <div class="figma-stars">
+                          {%- for star in (1..5) -%}
+                            <span class="figma-star figma-star--filled">
+                              {% render 'icon-star' %}
+                            </span>
+                          {%- endfor -%}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="figma-card-footer">
+                      <div class="figma-card-price">
+                        <span class="figma-price-currency">$</span>
+                        <span class="figma-price-amount">{{ 299 | plus: i | times: 10 }}</span>
+                      </div>
+                      <button type="button" class="figma-add-button" disabled>
+                        {% render 'icon-plus' %}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+
+      <!-- View All Footer -->
+      {%- if section.settings.show_view_all and section.settings.view_all_url != blank -%}
+        <div class="best-selling-products__footer">
+          <a href="{{ section.settings.view_all_url }}" class="best-selling-products__view-all">
+            {{ section.settings.view_all_text | default: "View All" }}
+            {{- 'icon-arrow.svg' | inline_asset_content -}}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Best Selling Products",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Best Selling Product",
+      "label": "Heading"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Leave empty to show all products"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4,
+      "label": "Maximum products to show"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": true,
+      "label": "Show product rating"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Show 'View All' link"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "default": "View All",
+      "label": "View All text"
+    },
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "View All URL",
+      "info": "Link to collection or page"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        }
+      ],
+      "default": "background-1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Selling Products"
+    }
+  ]
+}
+{% endschema %} 
