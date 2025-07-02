@@ -1,0 +1,323 @@
+/* Figma Product Card Component */
+
+.figma-product-card {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  height: 490px;
+  margin: 0 auto;
+}
+
+.figma-card-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.figma-card-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Image Section */
+.figma-card-image-container {
+  position: relative;
+  width: 100%;
+  height: 58.8%; /* Matches the Figma design proportions */
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.figma-card-image-wrapper {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.figma-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.figma-card-container:hover .figma-card-image {
+  transform: scale(1.05);
+}
+
+.figma-card-image-placeholder {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+}
+
+.figma-card-image-placeholder svg {
+  width: 100%;
+  height: 100%;
+  color: #8d8d8d;
+}
+
+/* Content Section */
+.figma-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 41.2%; /* Matches the Figma design proportions */
+  padding: 27px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff;
+}
+
+.figma-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Category/Type */
+.figma-card-category {
+  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16.76px;
+  font-weight: 400;
+  color: #8d8d8d;
+  line-height: 1.2;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+/* Product Title */
+.figma-card-title {
+  margin: 0;
+  padding: 0;
+}
+
+.figma-card-link {
+  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 21.33px;
+  font-weight: 600;
+  color: #0d1b39;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.figma-card-link:hover {
+  color: #1a2b4a;
+}
+
+/* Star Rating */
+.figma-card-rating {
+  margin-top: 2px;
+}
+
+.figma-stars {
+  display: flex;
+  align-items: center;
+  gap: 3.05px; /* Matches spacing from Figma */
+}
+
+.figma-star {
+  width: 18.28px;
+  height: 18.28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.figma-star svg {
+  width: 100%;
+  height: 100%;
+}
+
+.figma-star--filled svg {
+  color: #ffd700; /* Gold color for filled stars */
+  fill: currentColor;
+}
+
+.figma-star:not(.figma-star--filled) svg {
+  color: #e0e0e0; /* Light gray for empty stars */
+  fill: currentColor;
+}
+
+.figma-star--half svg {
+  background: linear-gradient(90deg, #ffd700 50%, #e0e0e0 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Footer with Price and Button */
+.figma-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 37px;
+}
+
+/* Price */
+.figma-card-price {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  color: #0d1b39;
+}
+
+.figma-price-currency {
+  font-size: 15.23px;
+  line-height: 1.2;
+}
+
+.figma-price-amount {
+  font-size: 21.33px;
+  line-height: 1.2;
+}
+
+/* Add Button */
+.figma-add-button {
+  width: 48.74px;
+  height: 48.74px;
+  background: #0d1b39;
+  border: none;
+  border-radius: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.figma-add-button:hover {
+  background: #1a2b4a;
+  transform: scale(1.05);
+}
+
+.figma-add-button:active {
+  transform: scale(0.95);
+}
+
+.figma-add-button svg {
+  width: 24.37px;
+  height: 24.37px;
+  color: #ffffff;
+  fill: currentColor;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 749px) {
+  .figma-product-card {
+    max-width: 300px;
+    height: 440px;
+  }
+  
+  .figma-card-content {
+    padding: 20px;
+  }
+  
+  .figma-card-category {
+    font-size: 15px;
+  }
+  
+  .figma-card-link {
+    font-size: 19px;
+  }
+  
+  .figma-star {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .figma-price-currency {
+    font-size: 14px;
+  }
+  
+  .figma-price-amount {
+    font-size: 19px;
+  }
+  
+  .figma-add-button {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .figma-add-button svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .figma-product-card {
+    max-width: 280px;
+    height: 400px;
+  }
+  
+  .figma-card-content {
+    padding: 18px;
+  }
+  
+  .figma-card-footer {
+    margin-top: 25px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .figma-card-container,
+  .figma-card-image,
+  .figma-add-button {
+    transition: none;
+  }
+  
+  .figma-card-container:hover {
+    transform: none;
+  }
+  
+  .figma-card-container:hover .figma-card-image {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .figma-card-container {
+    border: 2px solid;
+  }
+  
+  .figma-add-button {
+    border: 2px solid #ffffff;
+  }
+}
+
+/* Focus states for accessibility */
+.figma-card-link:focus,
+.figma-add-button:focus {
+  outline: 2px solid #0d1b39;
+  outline-offset: 2px;
+}
+
+.figma-card-link:focus-visible,
+.figma-add-button:focus-visible {
+  outline: 2px solid #0d1b39;
+  outline-offset: 2px;
+} 

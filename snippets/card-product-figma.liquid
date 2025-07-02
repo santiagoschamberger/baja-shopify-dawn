@@ -1,0 +1,111 @@
+{% comment %}
+  Renders a product card based on Figma design
+
+  Accepts:
+  - card_product: {Object} Product Liquid object (required)
+  - show_rating: {Boolean} Show the product rating. Default: true
+  - lazy_load: {Boolean} Image should be lazy loaded. Default: true (optional)
+  - section_id: {String} The ID of the section that contains this card.
+
+  Usage:
+  {% render 'card-product-figma', card_product: product, section_id: section.id %}
+{% endcomment %}
+
+{%- if card_product and card_product != empty -%}
+  <div class="figma-product-card" data-product-id="{{ card_product.id }}">
+    <!-- Background card container -->
+    <div class="figma-card-container">
+      
+      <!-- Product image section -->
+      <div class="figma-card-image-container">
+        {%- if card_product.featured_media -%}
+          <div class="figma-card-image-wrapper">
+            <img
+              srcset="
+                {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+              "
+              src="{{ card_product.featured_media | image_url: width: 533 }}"
+              sizes="(min-width: 990px) 300px, (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+              alt="{{ card_product.featured_media.alt | escape }}"
+              class="figma-card-image"
+              {% unless lazy_load == false %}
+                loading="lazy"
+              {% endunless %}
+              width="{{ card_product.featured_media.width }}"
+              height="{{ card_product.featured_media.height }}"
+            >
+          </div>
+        {%- else -%}
+          <div class="figma-card-image-placeholder">
+            {{ 'product-1' | placeholder_svg_tag: 'figma-card-image' }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Product information section -->
+      <div class="figma-card-content">
+        <div class="figma-card-info">
+          <!-- Product type/category -->
+          <div class="figma-card-category">
+            {{ card_product.type | default: 'Product' }}
+          </div>
+          
+          <!-- Product title -->
+          <h3 class="figma-card-title">
+            <a href="{{ card_product.url }}" class="figma-card-link">
+              {{ card_product.title | escape }}
+            </a>
+          </h3>
+          
+          <!-- Star rating -->
+          <div class="figma-card-rating">
+            {%- if show_rating != false and card_product.metafields.reviews.rating.value != blank -%}
+              {%- liquid
+                assign rating_value = card_product.metafields.reviews.rating.value.rating
+                assign rating_max = card_product.metafields.reviews.rating.value.scale_max
+                assign full_stars = rating_value | floor
+                assign has_half_star = rating_value | modulo: 1 | round: 1
+              -%}
+              <div class="figma-stars" role="img" aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: rating_value, rating_max: rating_max }}">
+                {%- for i in (1..5) -%}
+                  <span class="figma-star{% if i <= full_stars %} figma-star--filled{% elsif i == full_stars | plus: 1 and has_half_star >= 0.5 %} figma-star--half{% endif %}">
+                    {% render 'icon-star' %}
+                  </span>
+                {%- endfor -%}
+              </div>
+            {%- else -%}
+              <!-- Default 5-star display when no rating data -->
+              <div class="figma-stars">
+                {%- for i in (1..5) -%}
+                  <span class="figma-star figma-star--filled">
+                    {% render 'icon-star' %}
+                  </span>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <!-- Price and add button section -->
+        <div class="figma-card-footer">
+          <div class="figma-card-price">
+            <span class="figma-price-currency">$</span>
+            <span class="figma-price-amount">{{ card_product.price | money_without_currency }}</span>
+          </div>
+          
+          <button 
+            type="button" 
+            class="figma-add-button"
+            data-product-url="{{ card_product.url }}"
+            aria-label="Quick add {{ card_product.title | escape }}"
+          >
+            {% render 'icon-plus' %}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%} 

@@ -1,0 +1,222 @@
+{{ 'component-card-figma.css' | asset_url | stylesheet_tag }}
+{{ 'figma-product-card.js' | asset_url | script_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .figma-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .figma-cards-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="section-{{ section.id }}-padding">
+    {%- unless section.settings.title == blank -%}
+      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin">
+        <h2
+          id="SectionHeading-{{ section.id }}"
+          class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        >
+          {{ section.settings.title }}
+        </h2>
+      </div>
+    {%- endunless -%}
+
+    <div class="figma-cards-grid">
+      {%- liquid
+        assign products_to_display = section.settings.products_to_show | default: 4
+        if section.settings.collection != blank
+          assign collection_products = collections[section.settings.collection].products
+        else
+          assign collection_products = collections.all.products
+        endif
+      -%}
+      
+      {%- for product in collection_products limit: products_to_display -%}
+        {% render 'card-product-figma', 
+           card_product: product, 
+           show_rating: section.settings.show_rating,
+           lazy_load: forloop.index > 2,
+           section_id: section.id
+        %}
+      {%- else -%}
+        {%- comment -%} Show placeholder cards if no products {%- endcomment -%}
+        {%- for i in (1..4) -%}
+          <div class="figma-product-card">
+            <div class="figma-card-container">
+              <div class="figma-card-image-container">
+                <div class="figma-card-image-placeholder">
+                  {{ 'product-1' | placeholder_svg_tag: 'figma-card-image' }}
+                </div>
+              </div>
+              <div class="figma-card-content">
+                <div class="figma-card-info">
+                  <div class="figma-card-category">Chair</div>
+                  <h3 class="figma-card-title">
+                    <span class="figma-card-link">Sample Product {{ i }}</span>
+                  </h3>
+                  <div class="figma-card-rating">
+                    <div class="figma-stars">
+                      {%- for star in (1..5) -%}
+                        <span class="figma-star figma-star--filled">
+                          {% render 'icon-star' %}
+                        </span>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                </div>
+                <div class="figma-card-footer">
+                  <div class="figma-card-price">
+                    <span class="figma-price-currency">$</span>
+                    <span class="figma-price-amount">{{ 299 | plus: i | times: 10 }}</span>
+                  </div>
+                  <button type="button" class="figma-add-button" disabled>
+                    {% render 'icon-plus' %}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Figma Product Cards Demo",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Featured Products",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4,
+      "label": "Maximum products to show"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": true,
+      "label": "Show product rating"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        }
+      ],
+      "default": "background-1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Figma Product Cards Demo"
+    }
+  ]
+}
+{% endschema %} 
