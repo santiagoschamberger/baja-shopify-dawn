@@ -7,9 +7,9 @@
   min-height: 100vh;
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 161px 68px;
+  padding: 80px 68px 161px;
   box-sizing: border-box;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .interior-hero__title {
-  font-family: 'Gilroy-Bold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-gilroy-bold, var(--font-heading-family));
   font-size: 80px;
   line-height: 1.3;
   letter-spacing: -0.8px;
@@ -49,7 +49,7 @@
 }
 
 .interior-hero__subtitle {
-  font-family: 'Gilroy-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-gilroy-regular, var(--font-body-family));
   font-size: 24px;
   line-height: 1.6;
   color: #ffffff;
@@ -82,7 +82,7 @@
   border: none;
   outline: none;
   color: #ffffff;
-  font-family: 'Gilroy-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-gilroy-regular, var(--font-body-family));
   font-size: 18px;
   line-height: 1.5;
   opacity: 0.8;
@@ -216,7 +216,7 @@
 }
 
 .interior-features__title {
-  font-family: 'Gilroy-Bold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-gilroy-bold, var(--font-heading-family));
   font-size: 42px;
   line-height: normal;
   color: #1e1e1e;
@@ -243,7 +243,7 @@
 }
 
 .feature-card__title {
-  font-family: 'Gilroy-Bold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-gilroy-bold, var(--font-heading-family));
   font-size: 24px;
   line-height: normal;
   color: #1e1e1e;
@@ -254,7 +254,7 @@
 }
 
 .feature-card__description {
-  font-family: 'Gilroy-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-gilroy-regular, var(--font-body-family));
   font-size: 16px;
   line-height: 1.85;
   color: #1e1e1e;
@@ -269,7 +269,7 @@
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  font-family: 'Gilroy-Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-gilroy-medium, var(--font-body-family));
   font-size: 14px;
   line-height: 1.85;
   color: #e58411;
@@ -315,7 +315,7 @@
 
 @media screen and (max-width: 768px) {
   .interior-hero {
-    padding: 80px 20px;
+    padding: 60px 20px 120px;
     min-height: 80vh;
   }
   
