@@ -1,0 +1,188 @@
+{{ 'section-interior-hero.css' | asset_url | stylesheet_tag }}
+
+<div class="interior-hero" style="background-image: linear-gradient(rgba(255, 255, 255, 0) 86.133%, rgb(255, 255, 255) 100%), url('{{ section.settings.background_image | image_url: width: 1440 }}');">
+  <div class="interior-hero__container">
+    <div class="interior-hero__content">
+      <div class="interior-hero__text-content">
+        <h1 class="interior-hero__title">
+          {{ section.settings.title }}
+        </h1>
+        <p class="interior-hero__subtitle">
+          {{ section.settings.subtitle }}
+        </p>
+        
+        {%- if section.settings.enable_search -%}
+        <div class="interior-hero__search">
+          <form action="{{ routes.search_url }}" method="get" class="search-form">
+            <input
+              type="search"
+              name="q"
+              value="{{ search.terms | escape }}"
+              placeholder="{{ section.settings.search_placeholder | default: 'Search furniture' }}"
+              class="search-form__input"
+            >
+            <button type="submit" class="search-form__button">
+              <svg class="search-form__icon" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+        {%- endif -%}
+      </div>
+      
+      <div class="interior-hero__decorative-elements">
+        {%- comment -%} Decorative floating elements {%- endcomment -%}
+        <div class="decorative-element decorative-element--1"></div>
+        <div class="decorative-element decorative-element--2"></div>
+        <div class="decorative-element decorative-element--3"></div>
+        <div class="decorative-element decorative-element--4"></div>
+        <div class="decorative-element decorative-element--5">
+          <div class="progress-indicator">
+            <div class="progress-dot progress-dot--active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.show_features -%}
+<div class="interior-features">
+  <div class="interior-features__container">
+    <h2 class="interior-features__title">{{ section.settings.features_title | default: 'Why Choosing Us' }}</h2>
+    
+    <div class="interior-features__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature' -%}
+        <div class="feature-card">
+          <h3 class="feature-card__title">{{ block.settings.title }}</h3>
+          <p class="feature-card__description">{{ block.settings.description }}</p>
+          {%- if block.settings.link_text and block.settings.link_url -%}
+          <a href="{{ block.settings.link_url }}" class="feature-card__link">
+            {{ block.settings.link_text }}
+            <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          {%- endif -%}
+        </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Interior Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Make your interior more minimalistic & modern"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Turn your room with panto into a lot more minimalist and modern with ease and speed"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_search",
+      "label": "Enable search",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder text",
+      "default": "Search furniture"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_features",
+      "label": "Show features section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "features_title",
+      "label": "Features section title",
+      "default": "Why Choosing Us"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature description"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link text",
+          "default": "More Info"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Interior Hero",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Luxury facilities",
+            "description": "The advantage of hiring a workspace with us is that givees you comfortable service and all-around facilities.",
+            "link_text": "More Info"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Affordable Price",
+            "description": "You can get a workspace of the highest quality at an affordable price and still enjoy the facilities that are only here.",
+            "link_text": "More Info"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Many Choices",
+            "description": "We provide many unique work space choices so that you can choose the workspace to your liking.",
+            "link_text": "More Info"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 
