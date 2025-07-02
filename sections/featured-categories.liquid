@@ -15,18 +15,20 @@
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} isolate gradient">
-  <div class="featured-categories section-{{ section.id }}-padding page-width">
+  <div class="featured-categories section-{{ section.id }}-padding">
     <div class="featured-categories__content">
-      {%- if section.settings.heading != blank -%}
-        <h2 class="featured-categories__heading {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {{ section.settings.heading }}
-        </h2>
-      {%- endif -%}
-      {%- if section.settings.subtitle != blank -%}
-        <p class="featured-categories__subtitle{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {{ section.settings.subtitle }}
-        </p>
-      {%- endif -%}
+      <div class="featured-categories__header">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="featured-categories__heading {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {{ section.settings.heading }}
+          </h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="featured-categories__subtitle{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {{ section.settings.subtitle }}
+          </p>
+        {%- endif -%}
+      </div>
       
       <div class="featured-categories__grid{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         {%- for block in section.blocks limit: 4 -%}
@@ -106,9 +108,7 @@
         <div class="featured-categories__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <a href="{{ section.settings.view_all_url }}" class="featured-categories__view-all-link">
             {{ section.settings.view_all_text | default: 'View All' }}
-            <span class="featured-categories__arrow">
-              {% render 'icon-arrow' %}
-            </span>
+            {{ 'arrow-icon.svg' | asset_url | img_tag: class: 'featured-categories__icon', alt: 'Arrow icon' }}
           </a>
         </div>
       {%- endif -%}

@@ -1,12 +1,18 @@
 .featured-categories {
   background-color: rgb(var(--color-background));
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .featured-categories__content {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 5rem;
+}
+
+.featured-categories__header {
+  text-align: left;
 }
 
 .featured-categories__heading {
@@ -15,7 +21,6 @@
   font-size: 4.2rem;
   line-height: normal;
   color: #1e1e1e;
-  text-align: center;
   margin: 0;
   font-style: normal;
 }
@@ -29,7 +34,6 @@
   margin: 2rem 0 0 0;
   font-weight: normal;
   font-style: normal;
-  text-align: center;
 }
 
 .featured-categories__grid {
@@ -37,7 +41,6 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 1.9rem;
   width: 100%;
-  max-width: 119.8rem;
 }
 
 .featured-categories__card {
@@ -148,33 +151,27 @@
 .featured-categories__view-all-link {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  font-family: 'Gilroy-Medium', var(--font-body-family);
+  gap: 0.5rem;
+  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.125rem;
   font-weight: 500;
-  font-size: 1.8rem;
-  line-height: 1.85;
-  color: #e58411;
+  color: #ff8c42;
   text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
-  font-style: normal;
+  transition: color 0.2s ease;
 }
 
 .featured-categories__view-all-link:hover {
-  color: #d4750f;
-  transform: translateX(0.5rem);
+  color: #e67a36;
 }
 
-.featured-categories__arrow {
-  display: flex;
-  align-items: center;
-  width: 4.8rem;
-  height: 2.4rem;
+.featured-categories__icon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.2s ease;
 }
 
-.featured-categories__arrow svg {
-  width: 100%;
-  height: 100%;
-  fill: currentColor;
+.featured-categories__view-all-link:hover .featured-categories__icon {
+  transform: translateX(2px);
 }
 
 /* Responsive Design */
