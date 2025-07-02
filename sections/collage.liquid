@@ -1,5 +1,5 @@
 {{ 'collage.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-card-figma.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
 {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
@@ -93,13 +93,10 @@
               </div>
             {%- when 'product' -%}
               {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
-              {% render 'card-product',
+              {% render 'card-product-figma',
                 card_product: block.settings.product,
-                media_aspect_ratio: 'adapt',
-                show_secondary_image: block.settings.second_image,
-                extend_height: true,
-                placeholder_image: placeholder_image,
-                skip_styles: skip_card_product_styles
+                show_rating: true,
+                section_id: section.id
               %}
               {% assign skip_card_product_styles = true %}
             {%- when 'collection' -%}

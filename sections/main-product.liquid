@@ -578,16 +578,10 @@
                                       {%- else -%}
                                         {% assign quick_add = 'none' %}
                                       {%- endif -%}
-                                      {% render 'card-product',
+                                      {% render 'card-product-figma',
                                         card_product: product,
-                                        media_aspect_ratio: block.settings.image_ratio,
-                                        show_secondary_image: false,
-                                        lazy_load: false,
-                                        skip_styles: skip_card_product_styles,
-                                        quick_add: quick_add,
-                                        section_id: section.id,
-                                        horizontal_class: true,
-                                        horizontal_quick_add: true
+                                        show_rating: true,
+                                        section_id: section.id
                                       %}
                                     </li>
                                     {%- assign skip_card_product_styles = true -%}
@@ -651,7 +645,7 @@
                       </div>
                     </aside>
                   {%- endif -%}
-                  {{ 'component-card.css' | asset_url | stylesheet_tag }}
+                  {{ 'component-card-figma.css' | asset_url | stylesheet_tag }}
                   {{ 'component-complementary-products.css' | asset_url | stylesheet_tag }}
                   {%- if block.settings.enable_quick_add -%}
                     {{ 'quick-add.css' | asset_url | stylesheet_tag }}
