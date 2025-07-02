@@ -47,7 +47,7 @@
       ],
       "name": "Interior Hero",
       "settings": {
-        "background_image": "shopify://shop_images/background.svg",
+        "background_image": "shopify://shop_images/background.png",
         "title": "Make your interior more minimalistic & modern",
         "subtitle": "Turn your room with panto into a lot more minimalist and modern with ease and speed",
         "enable_search": true,
