@@ -9,6 +9,53 @@
  */
 {
   "sections": {
+    "interior_hero_BkrHHG": {
+      "type": "interior-hero",
+      "blocks": {
+        "feature_xr9jAh": {
+          "type": "feature",
+          "settings": {
+            "title": "Luxury facilities",
+            "description": "The advantage of hiring a workspace with us is that givees you comfortable service and all-around facilities.",
+            "link_text": "More Info",
+            "link_url": ""
+          }
+        },
+        "feature_bPCCL6": {
+          "type": "feature",
+          "settings": {
+            "title": "Affordable Price",
+            "description": "You can get a workspace of the highest quality at an affordable price and still enjoy the facilities that are only here.",
+            "link_text": "More Info",
+            "link_url": ""
+          }
+        },
+        "feature_TYbq4d": {
+          "type": "feature",
+          "settings": {
+            "title": "Many Choices",
+            "description": "We provide many unique work space choices so that you can choose the workspace to your liking.",
+            "link_text": "More Info",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_xr9jAh",
+        "feature_bPCCL6",
+        "feature_TYbq4d"
+      ],
+      "name": "Interior Hero",
+      "settings": {
+        "background_image": "shopify://shop_images/background-hero.png",
+        "title": "Make your interior more minimalistic & modern",
+        "subtitle": "Turn your room with panto into a lot more minimalist and modern with ease and speed",
+        "enable_search": true,
+        "search_placeholder": "Search furniture",
+        "show_features": true,
+        "features_title": "Why Choosing Us"
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -75,58 +122,11 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
-    },
-    "interior_hero_BkrHHG": {
-      "type": "interior-hero",
-      "blocks": {
-        "feature_xr9jAh": {
-          "type": "feature",
-          "settings": {
-            "title": "Luxury facilities",
-            "description": "The advantage of hiring a workspace with us is that givees you comfortable service and all-around facilities.",
-            "link_text": "More Info",
-            "link_url": ""
-          }
-        },
-        "feature_bPCCL6": {
-          "type": "feature",
-          "settings": {
-            "title": "Affordable Price",
-            "description": "You can get a workspace of the highest quality at an affordable price and still enjoy the facilities that are only here.",
-            "link_text": "More Info",
-            "link_url": ""
-          }
-        },
-        "feature_TYbq4d": {
-          "type": "feature",
-          "settings": {
-            "title": "Many Choices",
-            "description": "We provide many unique work space choices so that you can choose the workspace to your liking.",
-            "link_text": "More Info",
-            "link_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "feature_xr9jAh",
-        "feature_bPCCL6",
-        "feature_TYbq4d"
-      ],
-      "name": "Interior Hero",
-      "settings": {
-        "background_image": "shopify://shop_images/background-hero.png",
-        "title": "Make your interior more minimalistic & modern",
-        "subtitle": "Turn your room with panto into a lot more minimalist and modern with ease and speed",
-        "enable_search": true,
-        "search_placeholder": "Search furniture",
-        "show_features": true,
-        "features_title": "Why Choosing Us"
-      }
     }
   },
   "order": [
+    "interior_hero_BkrHHG",
     "image_banner",
-    "featured_collection",
-    "interior_hero_BkrHHG"
+    "featured_collection"
   ]
 }
