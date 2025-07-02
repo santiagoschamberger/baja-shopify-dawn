@@ -1,4 +1,4 @@
-/* Gilroy Font Family */
+/* Gilroy Font Family - Individual font families approach */
 
 @font-face {
   font-family: 'Gilroy-Regular';
@@ -27,11 +27,38 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Gilroy-Light';
+  src: url('{{ "Gilroy-Light.woff2" | asset_url }}') format('woff2'),
+       url('{{ "Gilroy-Light.woff" | asset_url }}') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy-Heavy';
+  src: url('{{ "Gilroy-Heavy.woff2" | asset_url }}') format('woff2'),
+       url('{{ "Gilroy-Heavy.woff" | asset_url }}') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Global Gilroy font variables */
 :root {
   --font-gilroy-regular: 'Gilroy-Regular', var(--font-body-family);
   --font-gilroy-medium: 'Gilroy-Medium', var(--font-body-family);
   --font-gilroy-bold: 'Gilroy-Bold', var(--font-heading-family);
+  --font-gilroy-light: 'Gilroy-Light', var(--font-body-family);
+  --font-gilroy-heavy: 'Gilroy-Heavy', var(--font-heading-family);
+}
+
+/* Debug - Test if fonts are loading */
+.gilroy-test {
+  font-family: 'Gilroy-Bold', Arial, sans-serif;
+  font-size: 24px;
+  color: red;
 }
 
 /* Optional: Override theme fonts globally with Gilroy */

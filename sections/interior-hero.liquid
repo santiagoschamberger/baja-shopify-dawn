@@ -63,9 +63,7 @@
           {%- if block.settings.link_text and block.settings.link_url -%}
           <a href="{{ block.settings.link_url }}" class="feature-card__link">
             {{ block.settings.link_text }}
-            <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            {{ 'arrow-icon.svg' | asset_url | img_tag: class: 'feature-card__icon', alt: 'Arrow icon' }}
           </a>
           {%- endif -%}
         </div>
