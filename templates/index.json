@@ -45,6 +45,9 @@
         "feature_bPCCL6",
         "feature_TYbq4d"
       ],
+      "custom_css": [
+        ".feature-card__title {color: #E58411;}"
+      ],
       "name": "Interior Hero",
       "settings": {
         "background_image": "shopify://shop_images/back.png",
@@ -53,7 +56,7 @@
         "enable_search": true,
         "search_placeholder": "Search furniture",
         "show_features": true,
-        "features_title": "Why<br> Choosing Us"
+        "features_title": "Why Choosing Us"
       }
     },
     "featured_collection": {
