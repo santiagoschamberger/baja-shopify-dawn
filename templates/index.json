@@ -64,9 +64,65 @@
       "name": "Best Selling Products",
       "settings": {
         "title": "Best Selling Products",
+        "subtitle": "Turn your room with panto into a lot more minimalist and modern with ease and speed",
         "collection": "",
         "products_to_show": 4,
         "show_rating": true,
+        "show_view_all": true,
+        "view_all_text": "View All",
+        "view_all_url": "",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_categories_N3TEak": {
+      "type": "featured-categories",
+      "blocks": {
+        "collection_waRnAg": {
+          "type": "collection",
+          "settings": {
+            "collection": "bedroom",
+            "main_category": "",
+            "subcategory": ""
+          }
+        },
+        "collection_ML7XcM": {
+          "type": "collection",
+          "settings": {
+            "collection": "decor",
+            "main_category": "",
+            "subcategory": ""
+          }
+        },
+        "collection_Lxmq8K": {
+          "type": "collection",
+          "settings": {
+            "collection": "furniture",
+            "main_category": "",
+            "subcategory": ""
+          }
+        },
+        "collection_98ApX4": {
+          "type": "collection",
+          "settings": {
+            "collection": "living",
+            "main_category": "",
+            "subcategory": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_waRnAg",
+        "collection_ML7XcM",
+        "collection_Lxmq8K",
+        "collection_98ApX4"
+      ],
+      "name": "Featured Categories",
+      "settings": {
+        "heading": "Our categories",
+        "subtitle": "",
+        "heading_size": "h1",
         "show_view_all": true,
         "view_all_text": "View All",
         "view_all_url": "",
@@ -78,6 +134,7 @@
   },
   "order": [
     "interior_hero_BkrHHG",
-    "best_selling_products_ieXyPA"
+    "best_selling_products_ieXyPA",
+    "featured_categories_N3TEak"
   ]
 }
